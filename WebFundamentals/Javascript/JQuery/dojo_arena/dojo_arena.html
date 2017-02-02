@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dojo Arena</title>
+    <link rel="stylesheet" href="dojoArena.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            console.log("working");
+
+            $('img').hide();
+            $('#character_select').hide();
+
+            $('.beach').hover(function() {
+                $('#wrapper').css({
+                    background: 'url("beach.jpg")'
+                });
+            });
+
+            $('.planet').hover(function() {
+                $('#wrapper').css({
+                    background: 'url("earth.jpg")'
+                });
+            });
+
+            $('.Dojo').hover(function() {
+                $('#wrapper').css({
+                    background: 'url("dojo.jpg")'
+                });
+            });
+
+            $('.forest').hover(function() {
+                $('#wrapper').css({
+                    background: 'url("forest.jpg")'
+                });
+            });
+
+            $('.matrix').hover(function() {
+                $('#wrapper').css({
+                    background: 'url("matrix.jpg")'
+                });
+            });
+
+            $('.snow').hover(function() {
+                $('#wrapper').css({
+                    background: 'url("snow.jpg")'
+                });
+            });
+
+            $('.location').click(function() {
+                $('#arena_select').hide('slow');
+                $('#character_select').show('slow');
+            })
+
+            $('#ninja_select_1').on('change', function() {
+                $('#player1_img').show();
+                var image2show = $(this).val() + '.png'
+                console.log(image2show);
+                $('#player1_img').attr('src', image2show)
+
+            })
+
+            $('#ninja_select_2').on('change', function() {
+                $('#player2_img').show();
+                var image2show = $(this).val() + '.png'
+                console.log(image2show);
+                $('#player2_img').attr('src', image2show)
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="arena_select" class="box">
+            <h1>Select Arena</h1>
+            <ul>
+                <li class="location beach">beach</li>
+                <li class="location planet">planet</li>
+                <li class="location Dojo">Dojo</li>
+            </ul>
+            <ul>
+                <li class="location forest">forest</li>
+                <li class="location matrix">matrix</li>
+                <li class="location snow">snow</li>
+            </ul>
+            <div class="locations">
+                <img src="beach.jpg" alt="beach">
+                <img src="earth.jpg" alt="planet">
+                <img src="dojo.jpg" alt="Dojo">
+                <img src="forest.jpg" alt="forest">
+                <img src="matrix.jpg" alt="matrix">
+                <img src="snow.jpg" alt="snow">
+            </div>
+
+        </div>
+        <div id="character_select" class="box">
+            <h1>Select Players</h1>
+            <select id="ninja_select_1" name="Select ninja">
+                    <option value="Select">Select Ninja</option>
+                    <option img2show="leo.png" value="leo">Leonardo</option>
+                    <option img2show="raphael.png" value="raphael">Raphael</option>
+                    <option img2show="mikey.png" value="mikey">Michaelangelo</option>
+                    <option value="donny">Donatello</option>
+                </select>
+            <select id="ninja_select_2" name="Select ninja">
+                    <option img2show="donny.png" value="Select">Select Ninja</option>
+                    <option value="leo">Leonardo</option>
+                    <option value="raphael">Raphael</option>
+                    <option value="mikey">Michaelangelo</option>
+                    <option value="donny">Donatello</option>
+                </select>
+        </div>
+        <div class="turtles">
+            <img id="player1_img" src="" alt="player 1">
+            <img id="player2_img" src=" " alt="player 2">
+        </div>
+    </div>
+</body>
+
+</html>

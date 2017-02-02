@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                console.log('it works wahaha');
+
+                $('input').css({display: 'block', margin: '5px'});
+
+                $('table, th, td').css({border: '1px solid black', padding: '5px', width: '200px'})
+
+                $('form').submit(function(){
+                    console.log($(this).serialize());
+                    $('table tr:last').after('<tr><td>'+$('#first_name').val()+'</td><td>'+$('#last_name').val()+'</td><td>'+$('#email').val()+'</td><td>'+$('#phone').val()+'</td></tr>');
+                    $('#first_name').removeAttr('value');
+                    return false;
+                })
+
+            })
+
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email Address</th>
+                        <th>Contact #</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <form class="" action="index.html" method="post">
+                <h1>Add User</h1>
+                <label for="first-name">First Name:</label>
+                <input id="first_name" type="text" name="first_name" placeholder="First Name">
+
+                <label for="last-name">Last Name:</label>
+                <input id="last_name" type="text" name="last_name" placeholder="Last Name">
+
+                <label for="email">Email Address:</label>
+                <input id="email" type="text" name="email" placeholder="Email Address">
+
+                <label for="phone-number">Phone Number:</label>
+                <input id="phone" type="text" name="phone" placeholder="Phone #">
+
+                <input type="submit" name="submit" placeholder="Add User">
+
+            </form>
+
+        </div>
+
+    </body>
+</html>

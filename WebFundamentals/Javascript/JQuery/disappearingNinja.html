@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Disappearing Bao Baos</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            console.log('working');
+
+            $('img').css('width', '200px');
+
+            $('img').click(function() {
+                $(this).hide('slow');
+            });
+
+            $('.restore').click(function() {
+                $('img').show('slow');
+            });
+
+        })
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>Disappearing Ninjas</h1>
+        <p>Click on Bao-Bao to make her disappear.</p>
+        <div id="bao_baos">
+            <div>
+                <img src="bao-bao.png" alt="Bao Bao">
+                <img src="bao-bao.png" alt="Bao Bao">
+                <img src="bao-bao.png" alt="Bao Bao">
+                <img src="bao-bao.png" alt="Bao Bao">
+            </div>
+            <div>
+                <img src="bao-bao.png" alt="Bao Bao">
+                <img src="bao-bao.png" alt="Bao Bao">
+                <img src="bao-bao.png" alt="Bao Bao">
+                <img src="bao-bao.png" alt="Bao Bao">
+            </div>
+        </div>
+        <p>Miss Bao Bao? Click below to make her come back!</p>
+        <input class="restore" type="button" value="Restore">
+    </div>
+</body>
+
+</html>

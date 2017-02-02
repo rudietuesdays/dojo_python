@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        "use strict";
+        console.log("working");
+
+        function numbersOnly(arr) {
+            var arrnew = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (typeof arr[i] === 'number') {
+                    arrnew.push(arr[i]);
+                }
+            }
+            console.log(arr, arrnew);
+            return arr;
+        }
+
+        numbersOnly(['arr', 342, 43, 'string', 92, 'words', 12])
+    </script>
+</head>
+
+</html>
