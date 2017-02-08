@@ -1,0 +1,17 @@
+pip practice
+
+1. uses pip to install Django on the machine
+
+2. lists installed packages in pippi
+
+3. returns the message “Requirement already satisfied: Django in /usr/local/lib/python2.7/site-packages” because the package was already installed
+
+4. ‘list’ tells the user the installed packages. ‘freeze’ says the installed packages in requirements format that is usable in another environment
+
+5. this command creates a text file that includes a list of installed packages and their version requirements. The file is created on the Desktop, since that is where the user navigated to.
+
+6. uninstalls Django from the machine
+
+7. nothing happens because Django is removed from the machine, so there is nothing to show
+
+8. searches python pip packages and returns all results containing the search term, in this case “flask”

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dojo form</title>
+        <!-- linking a css style sheet -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <!-- linking a javascript file -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/ninjas">Ninjas</a></li>
+                <li><a href="#">Dojo form</a></li>
+            </ul>
+            <form action=" ">
+                <h1>Form</h1>
+                <label for="name">Name:</label>
+                <input type="text" name="name" placeholder="name">
+                <br>
+                <label for="email">Email address:</label>
+                <input type="text" name="email" placeholder="email address">
+                <br>
+                <label for="fave_color">Favorite color:</label>
+                <input type="text" name="fave_color" placeholder="favorite color">
+                <br>
+                <label for="sign_up">Would you like to join the ninja mailing list?</label>
+                <input type="radio" name="sign_up" value="Yes">Yes&nbsp;
+                <input type="radio" name="sign_up" value="No">No
+                <br>
+                <input class="submit" type="submit" name="submit" value="submit">
+            </form>
+        </div>
+    </body>
+</html>
