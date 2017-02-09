@@ -3,14 +3,25 @@
     <head>
         <meta charset="utf-8">
         <title>The Great Number Game</title>
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
     </head>
     <body>
         <h1>Welcome to the Great Number Game!</h1>
         <p>I am thinking of a number between 1 and 100</p>
-        <p>Take guess!</p>
-        <form action="/guess" method="post">
-            <input type="text" name="guess" placeholder='guess a number'>
-            <input type="submit" value="Go">
-        </form>
+        <div id="guessing">
+            <p>Take a guess!</p>
+            <form action="/guess" method="post" >
+                <input type="text" name="guess" placeholder='guess a number'>
+                <input type="submit" value="Go">
+            </form>
+        </div>
+        <p id='results'>Your guess was {{result}}!</p>
+        <div id="newGame">
+            <form action="/replay" method="post">
+                <input type="submit" value="New Game">
+            </form>
+
+        </div>
+
     </body>
 </html>

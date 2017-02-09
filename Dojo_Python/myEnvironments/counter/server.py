@@ -5,27 +5,32 @@ app.secret_key = 'ThisIsSecret'
 @app.route('/')
 def index():
 
-    try:
+    if 'counter' in session:
         session['counter'] += 1
-    except keyError:
+    else:
         session['counter'] = 1
+
+    # try:
+    #     session['counter'] += 1
+    # except keyError:
+    #     session['counter'] = 1
 
     return render_template('index.html')
 
 @app.route('/count2', methods=['POST'])
 def add_2():
-    try:
-        session['counter'] += 1
-    except keyError:
-        session['counter'] = 2
+    session['counter'] += 1
+
     return redirect ('/')
 
 @app.route('/reset', methods=['POST'])
 def reset_count():
-    try:
-        session['counter'] = 0
-    except keyError:
-        session['counter'] = 0
+
+    session.clear()
+    # session['counter'] = 0
+    # session.pop('counter', None)
+
+
     return redirect ('/')
 
 app.run(debug=True) # run our server
