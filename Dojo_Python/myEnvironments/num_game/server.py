@@ -5,12 +5,14 @@ app.secret_key = 'YouWillNeverGuessThis'
 
 @app.route('/')
 def index():
-    secretNum = random.randrange(1, 101)
-    if secretNum in session:
+
+    if 'secretNum' in session:
         print session['secretNum']
     else:
-        secretNum = session['secretNum']
+        session['secretNum'] = random.randrange(1, 101)
         print session['secretNum']
+
+
     return render_template('index.html')
 
 @app.route('/guess', methods=['POST'])
@@ -18,11 +20,11 @@ def guess_num():
     guessNum =  int(request.form['guess'])
     print session['secretNum']
     print guessNum
-    if (guessNum == session['secretNum']):
+    if guessNum == session['secretNum']:
         result = "correct"
-    elif (guessNum > session['secretNum']):
+    elif guessNum > session['secretNum']:
         result = "high"
-    elif (guessNum < session['secretNum']):
+    elif guessNum < session['secretNum']:
         result = "low"
     return render_template('index.html',result=result, guessNum=guessNum)
 
