@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Disappearing Ninjas</title>
+    </head>
+    <body>
+        {% if no_ninja %}
+            <img src="/static/imgs/tmnt.png" alt="turtles">
+        {% elif ninja == 'blue' %}
+            <img src="/static/imgs/leonardo.jpg" alt="leo">
+        {% elif ninja == 'orange' %}
+            <img src="/static/imgs/michelangelo.jpg" alt="mikey">
+        {% elif ninja == 'red' %}
+            <img src="/static/imgs/raphael.jpg" alt="raph">
+        {% elif ninja == 'purple' %}
+            <img src="/static/imgs/donatello.jpg" alt="donnie">
+        {% else %}
+            <img src="/static/imgs/notapril.jpg" alt="NOPE">
+        {% endif %}
+    </body>
+</html>

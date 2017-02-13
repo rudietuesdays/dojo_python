@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja Gold</title>
+    </head>
+    <style>
+        #wrapper{
+            margin: 0 auto;
+            font-family: sans-serif;
+            padding: 10px;
+        }
+
+        #activities{
+            width: 75%;
+            height: 200px;
+            border: 1px dashed gray;
+            margin-bottom: 10px;
+        }
+
+        .box{
+            display: inline-flex;
+            border: 1px solid black;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 15%
+        }
+
+        output {
+            border: 1px dashed gray;
+            padding: 3px;
+        }
+
+    </style>
+    <body>
+        <div id="wrapper">
+            <h2>Let's play N I N J A &nbsp;&nbsp;G O L D</h2>
+            <p>Your gold: <output name="your_gold">{{session['gold']}}</output></p>
+            <form class="box" action="/process_money" method="post">
+                <input type="hidden" name="building" value="farm">
+                <h4>Farm</h4>
+                <p>(earns 10-20 golds)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <form class="box" action="/process_money" method="post">
+                <input type="hidden" name="building" value="cave">
+                <h4>Cave</h4>
+                <p>(earns 5-10 gold)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <form class="box" action="/process_money" method="post">
+                <input type="hidden" name="building" value="house">
+                <h4>House</h4>
+                <p>(earns 2-5 gold)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <form class="box" action="/process_money" method="post">
+                <input type="hidden" name="building" value="casino">
+                <h4>Casino</h4>
+                <p>(earns/takes 10-50 gold)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <p><label>Activities:</label></p>
+            <div id="activities">
+
+                {% if session['log'] == {} %}
+                    <p></p>
+                {% else %}
+                    Earned {{ session['log']['new_gold'] }} golds from the {{session['log']['location']}} ... {{session['log']['created_at']}}
+                {% endif %}
+
+            </div>
+            <form action="/replay" method="post">
+                <input type="submit" value="Start Over">
+            </form>
+        </div>
+    </body>
+</html>

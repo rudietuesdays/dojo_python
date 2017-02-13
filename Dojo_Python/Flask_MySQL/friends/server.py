@@ -1,34 +1,60 @@
-from flask import Flask, render_template, redirect, request
-# import the Connector function
+from flask import Flask, request, redirect, render_template, session, flash
 from mysqlconnection import MySQLConnector
 app = Flask(__name__)
-# connect and store the connection in "mysql" note that you pass the database name to the function
-mysql = MySQLConnector(app, 'mydb')
+mysql = MySQLConnector(app,'friendsdb')
 
 @app.route('/')
 def index():
-    query = "SELECT * FROM users"
-    users = mysql.query_db(query)
-    return render_template("index.html", users=users)
+    # friends = mysql.query_db("SELECT * FROM friends")
+    # print friends
+    query = "SELECT * FROM friends"
+    friends = mysql.query_db(query)
+    return render_template('index.html', all_friends=friends)
 
-@app.route('/create', methods=['POST'])
-def create_user():
-    query = "INSERT INTO users (first_name, last_name, age, created_at, updated_at) VALUES (:first_name, :last_name, :age, NOW(), NOW())"
+@app.route('/friends', methods=['POST'])
+def create():
+    # Write query as a string. Notice how we have multiple values we want to insert into our query.
+    query = """INSERT INTO friends (first_name, last_name, occupation, created_at, updated_at)
+            VALUES (:first_name, :last_name, :occupation, NOW(), NOW())"""
+    # We'll then create a dictionary of data from the POST data received.
     data = {
         'first_name': request.form['first_name'],
         'last_name': request.form['last_name'],
-        'age': request.form['age'],
+        'occupation': request.form['occupation'],
     }
-    # an example of running a query
-    # print mysql.query_db("SELECT * FROM users")
-    print data
+    # Run query, with dictionary values injected into the query.
     mysql.query_db(query, data)
     return redirect('/')
 
-@app.route('/delete/<user_id>')
-def destroy(user_id):
-    query = "DELETE FROM users where id=:id"
-    data = {'id':id}
+@app.route('/friends/<friend_id>')
+def show(friend_id):
+    # Write query to select specific user by id. At every point where we want to insert data, we write ":" and variable name.
+    query = "SELECT * FROM friends WHERE id = :specific_id"
+    # Then define a dictionary with key that matches :variable_name in query.
+    data = {'specific_id': friend_id}
+    # Run query with inserted data.
+    friends = mysql.query_db(query, data)
+    # Friends should be a list with a single object, so we pass the value at [0] to our template under alias one_friend.
+    return render_template('index.html', one_friend=friends[0])
+
+@app.route('/update_friend/<friend_id>', methods=['POST'])
+def update(friend_id):
+    query = """UPDATE friends
+             SET first_name = :first_name, last_name = :last_name, occupation = :occupation
+             WHERE id = :id"""
+    data = {
+             'first_name': request.form['first_name'],
+             'last_name':  request.form['last_name'],
+             'occupation': request.form['occupation'],
+             'id': friend_id
+           }
+    mysql.query_db(query, data)
+    return redirect('/')
+
+@app.route('/remove_friend/<friend_id>', methods=['POST'])
+def delete(friend_id):
+    query = """DELETE FROM friends WHERE id = :id"""
+    data = {'id': friend_id}
     mysql.query_db(query, data)
     return redirect('/')
 
