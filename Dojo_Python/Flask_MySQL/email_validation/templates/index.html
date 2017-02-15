@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Email Validation</title>
+    <style>
+
+        body {
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        li {
+            color: white;
+            text-align: center;
+            border: 2px solid black;
+            margin: 0px 30px;
+            padding: 10px;
+        }
+        .error {
+            background-color: red;
+        }
+
+        .success {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/process" method="post">
+        <p>Email Address: <input type="text" name="email"></p>
+        <p><input type="submit" name="submit" value="Submit"></p>
+    </form>
+    <p>Email Addresses Entered:</p>
+    <hr>
+    {% for user in all_users %}
+        <form action="/remove_user" method="post">
+            <p>{{ (user['email'].__str__()), user['created_at'].strftime("%m-%d-%Y %H:%M %p") }}</p>
+            <input type=hidden value="{{ user['id'] }}" name=user_to_delete></input>
+            <input type="submit" name="remove" value="Delete">
+            <hr>
+        </form>
+
+    {% endfor %}
+
+</body>
+
+</html>
