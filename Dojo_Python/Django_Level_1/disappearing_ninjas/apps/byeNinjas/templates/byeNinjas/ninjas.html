@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Disappearing Ninjas</title>
+        {% load staticfiles %}
+    </head>
+    <body>
+        {% if all_ninjas %}
+        <img src="{% static 'byeNinjas/imgs/tmnt.png' %}" alt="TMNT">
+        {% elif color == 'blue' %}
+        <img src="{% static 'byeNinjas/imgs/leonardo.jpg' %}" alt="leo">
+        {% elif color == 'purple' %}
+        <img src="{% static 'byeNinjas/imgs/donatello.jpg' %}" alt="donnie">
+        {% elif color == 'orange' %}
+        <img src="{% static 'byeNinjas/imgs/michelangelo.jpg' %}" alt="mikey">
+        {% elif color == 'red' %}
+        <img src="{% static 'byeNinjas/imgs/raphael.jpg' %}" alt="raph">
+        {% else %}
+        <img src="{% static 'byeNinjas/imgs/notapril.jpg' %}" alt="april">
+        {% endif %}
+    </body>
+</html>
