@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    {% load staticfiles %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel="stylesheet" href="{% static 'ourApp/css/main.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <h4>{{ request.session.name }}</h4>
+    <form class="" action="/new_user" method="post">
+        {% csrf_token %}
+        <p><input type="text" name="first_name"></p>
+        <p><input type="submit" value="submit"></p>
+
+    </form>
+</body>
+
+</html>
