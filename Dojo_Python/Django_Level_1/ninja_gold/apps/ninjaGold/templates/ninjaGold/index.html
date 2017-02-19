@@ -3,8 +3,71 @@
     <head>
         <meta charset="utf-8">
         <title>Ninja Gold</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'ninjaGold/css/style.css' %}">
     </head>
-    <body>
+    <style>
+        #activities{
+            width: 100%;
+            height: 200px;
+            border: 1px dashed gray;
+            margin-bottom: 10px;
+            overflow: scroll;
+        }
 
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+    <body>
+        <div id="wrapper">
+            <h2>Let's play N I N J A &nbsp;&nbsp;G O L D</h2>
+            <p>Your gold: <output name="your_gold">{{ request.session.gold }}</output></p>
+            <form class="box" action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="farm">
+                <h4>Farm</h4>
+                <p>(earns 10-20 golds)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <form class="box" action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="cave">
+                <h4>Cave</h4>
+                <p>(earns 5-10 gold)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <form class="box" action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="house">
+                <h4>House</h4>
+                <p>(earns 2-5 gold)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <form class="box" action="/process_money" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="building" value="casino">
+                <h4>Casino</h4>
+                <p>(earns/takes 0-50 gold)</p>
+                <p><input type="submit" value="Find Gold!"></p>
+            </form>
+            <p><label>Activities:</label></p>
+            <div id="activities">
+
+                {% for log in request.session.activities %}
+
+                <p class ="{{log.color}}">{{log.log}}</p>
+                {% endfor %}
+
+            </div>
+            <form action="/replay" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Start Over">
+            </form>
+        </div>
     </body>
 </html>
