@@ -1,0 +1,25 @@
+* {
+    font-family: sans-serif;
+}
+
+.success {
+    background-color: green;
+    padding: 10px;
+}
+
+.warning {
+    background-color: red;
+    padding: 10px;
+}
+
+.messages {
+    border: 2px solid black;
+    color: white;
+    list-style: none;
+    padding: 1px;
+    margin: 30px;
+}
+
+.delete {
+    display: inline;
+}
