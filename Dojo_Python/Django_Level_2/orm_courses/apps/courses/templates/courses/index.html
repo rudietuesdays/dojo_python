@@ -26,16 +26,21 @@
                     <th>Date Added</th>
                     <th>Actions</th>
                 </tr>
-                {% for course in courses %}
+
+                {% for description in descriptions %}
                 <tr>
-                    <td>{{ course.id }}</td>
-                    <td>{{ course.name }}</td>
-                    <td>{{ course.description }}</td>
-                    <td>{{ course.date_added }}</td>
+                    <td>{{ description.course.id }}</td>
+                    <td>{{ description.course.name }}</td>
+                    <td>{{ description.description }}</td>
+                    <td>{{ description.course.date_added }}</td>
                     <td>
-                        <form action="/delete_course/{{course.id}}" method="post">
+                        <form action="/delete_course/{{description.course_id}}" method="post">
                             {% csrf_token %}
-                            <input type="submit" value="Delete">
+                            <input type="submit" value="Remove course">
+                        </form>
+                        <form action="/comments/{{description.course_id}}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="View/add comments">
                         </form>
                     </td>
                 </tr>

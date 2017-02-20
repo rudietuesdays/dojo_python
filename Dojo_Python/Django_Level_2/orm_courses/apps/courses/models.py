@@ -17,3 +17,10 @@ class Description(models.Model):
     course = models.ForeignKey(Course)
     date_added = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+
+class Comment(models.Model):
+    comment = models.TextField(max_length=1000)
+    course = models.ForeignKey(Course)
+    description = models.ForeignKey(Description)
+    date_added = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
