@@ -18,4 +18,5 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^', include('apps.emailValidation.urls')),
+    url(r'^', include('apps.emailsWithDb.urls')),
 ]
