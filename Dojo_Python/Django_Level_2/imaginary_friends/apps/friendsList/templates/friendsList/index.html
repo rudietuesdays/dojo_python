@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Imaginary Friends</title>
+    </head>
+    <body>
+        <h1>FRIENDSHIP IS FUN</h1>
+        <table>
+            <thead>
+                <tr>
+                    <td>Friend 1</td>
+                    <td>Friend 2</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for buddies in friendships %}
+                <tr>
+                    <td>{{buddies.friend_1.name}}</td>
+                    <td>{{buddies.friend_2.name}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/add" method="post">
+            {% csrf_token %}
+            <p>Name: <input type="text" name="name"</p>
+            <input type="submit" value="Add Friend">
+        </form>
+        {{ friends }}
+        <form action="/join" method="post">
+            {% csrf_token %}
+            <select name="friend_1">
+                {% for friend in friends %}
+                <option value="{{friend.id}}">{{ friend.name }}</option>
+                {% endfor %}
+            </select>
+            <select name="friend_2">
+                {% for friend in friends %}
+                <option value="{{friend.id}}">{{ friend.name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="Join">
+        </form>
+
+    </body>
+</html>
