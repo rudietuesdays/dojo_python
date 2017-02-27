@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Course Registration | Add/View Comments</title>
+    </head>
+    <body>
+        <h3>Add a comment</h3>
+        <p>Name: {{ description.course.name }}</p>
+        <p>Description: {{ description.description }}</p>
+        <p>Add your comment below:</p>
+        <form action="{% url 'courses:commenting' id=description.course_id %}" method="post">
+            {% csrf_token %}
+            <textarea name="comment" rows="8" cols="80"></textarea>
+            <p><input type="submit" value="Add comment"></p>
+        </form>
+        <form action="{% url 'courses:dashboard' %}" method="post">
+            {% csrf_token %}
+            <p><input type="submit" value="Go back"></p>
+        </form>
+        <p>Comments: </p>
+        {% for comment in comments %}
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.date_added }}</p>
+        {% endfor %}
+    </body>
+</html>

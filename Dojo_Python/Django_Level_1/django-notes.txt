@@ -1,0 +1,31 @@
+DJANGO
+django-admin startproject <project_name>
+mkdir apps
+touch __init__.py
+
+
+- django-admin in only for *starting* project, after that use manage.py
+- manage.py is script that allows u to run commands (like starting server
+- django creates project settings for you
+- ~views~ are controllers, ~templates~ are views
+- create templates folder as usual
+- also create templates/<login> or /<logout> etc
+- create templates folder for each app, put @app name inside templates
+	- same w static folders
+
+document.getElementsByTagName('video')[0].playbackRate = 1.5
+
+hash pw password = "the most secret password ever"
+Qs: having multiple apps? how it affects DB?
+
+***BELT EXAM TIPS***
+mind folder names when deploying in django
+use templates!! esp loginReg BUT start apps from scratch and copy/past code
+heavily comment!!
+use resources
+be judicious in copy-paste — do it in small chunks to make it easier
+be comfortable with pip install
+don’t stressssss
+20 min rule! don’t get stuck on specific feature, move on and come back if u need
+4 hours is a long, take a break!
+in case of fire: git add, git commit, git push, then leave
