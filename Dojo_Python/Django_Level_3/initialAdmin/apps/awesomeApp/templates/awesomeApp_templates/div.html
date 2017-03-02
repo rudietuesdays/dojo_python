@@ -1,0 +1,49 @@
+{% for note in notes %}
+<form id="note{{note.id}}" class='note_box'>
+    {% csrf_token %}
+    {{note.note}}
+    <input class="delete" type="submit" value="Delete">
+    <input type="hidden" name='Delete' value="{{note.id}}">
+</form>
+<form class="" action="index.html" method="post">
+    <input type="text" name="" value="">
+    <input type="submit" name="" value="">
+</form>
+
+<script type="text/javascript">
+    $('.note_box').on("click", function(){
+        console.log('clicked '+$(this).attr('id'));
+        e.preventDefault();
+        $.ajax({
+                url: '/edit',
+                method: 'get',
+                data: $(this).serialize(),
+                success: function(serverResponse){
+                    console.log("Clicked edit");
+                    $(".notes").html(serverResponse);
+                }
+            });
+        // $(this).toggle();
+        // $('.edit').toggle();
+        // $.ajax({
+        //     url: "/edit"
+            // method: 'get'
+        // })
+    })
+
+    $(document).on('submit', '#note'+{{note.id}}, function(e){
+    e.preventDefault();
+    $.ajax({
+            url: '/delete',
+            method: 'post',
+            data: $(this).serialize(),
+            success: function(serverResponse){
+                console.log("Clicked Deleted");
+                $(".notes").html(serverResponse);
+            }
+        });
+    })
+
+
+</script>
+{% endfor %}

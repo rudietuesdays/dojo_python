@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Notes</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'awesomeApp_statics/css/style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="{% static 'awesomeApp_statics/js/script.js' %}"></script>
+    </head>
+    <body>
+        <h1>Notes and reminders...</h1>
+        <p>(Click on a note to edit it.)</p>
+        <div class="notes">
+
+        </div>
+        <form class="submit_note" action="{% url 'awesomeApp:write' %}" method="post">
+            {% csrf_token %}
+            {{new_note_form.as_p}}
+
+            <p><input type="submit" name="" value="Post it"></p>
+        </form>
+    </body>
+</html>
