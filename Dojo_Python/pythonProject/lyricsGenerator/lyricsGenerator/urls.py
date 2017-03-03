@@ -16,6 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from apps.lyricsMaker.models import Song
+
+class SongAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Song, SongAdmin)
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('apps.lyricsMaker.urls')),

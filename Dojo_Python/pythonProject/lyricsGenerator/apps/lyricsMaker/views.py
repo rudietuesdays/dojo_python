@@ -54,3 +54,22 @@ class Songs(View):
             'song': song,
         }
         return render(request, 'lyricsMaker_templates/lyrics.html', context)
+
+class Library(View):
+    def get(self, request):
+        songs = Song.objects.all()
+
+        context = {
+            'songs': songs,
+        }
+
+        return render(request, 'lyricsMaker_templates/library.html', context)
+        
+    def post(self, request):
+        songs = Song.objects.all()
+
+        context = {
+            'songs': songs,
+        }
+
+        return render(request, 'lyricsMaker_templates/library.html', context)
