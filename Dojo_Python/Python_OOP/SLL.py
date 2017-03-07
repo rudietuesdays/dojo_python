@@ -38,11 +38,7 @@ class SinglyLinkedList(object):
     def insertBefore(self, nextVal, val):
         pass
 
-
 list = SinglyLinkedList()
 list.head = Node('Alice')
 list.head.next = Node('Chad')
 list.head.next.next = Node('Debra')
-
-print Node('Alice')
-print Node('Chad')
